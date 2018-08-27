@@ -1,0 +1,12 @@
+<ion-header-bar class="bg-primary double-arrow">
+    <i class="icon ion-chevron-down arrow"></i>
+</ion-header-bar>
+<ion-content class="bg-primary" on-swipe-down="changeMain()">
+    <p class="city-info">
+        {{ datas.name }}
+    </p>
+    <div>
+        Humidity: {{ datas.main.humidity}} <br>
+        Wind: {{ datas.wind.deg}} meter/sec <br>
+    </div>
+</ion-content>

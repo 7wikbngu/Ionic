@@ -1,0 +1,51 @@
+#city{
+    font-size: 25px;
+    padding-bottom: 30px;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.climate{
+    display: flex;
+    flex-direction: column;
+    padding-top: 50%;
+    align-items: center;
+
+    #temp{
+        padding: 30px;
+        font-size: 3rem;
+    }
+
+    #weather{
+        padding-top: 20px;
+        font-size: 2rem;
+    }
+}
+
+.other{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+
+    .humidity{
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+    }
+    .min-max{
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+    }
+    .wind{
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+    }
+
+    i.icon{
+        font-size: 40px;
+    }
+
+}
+

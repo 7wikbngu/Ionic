@@ -1,0 +1,45 @@
+<ion-header-bar class="item-input-inset">
+    <label class="item-input-wrapper">
+        <i class="icon ion-ios-search placeholder-icon"></i>
+        <input type="text" placeholder="Enter a city name" ng-model="cityName">
+    </label>
+    <button class="button" ng-click="get()">
+        Search
+    </button>
+</ion-header-bar>
+<ion-content on-swipe-up="changeInfo()">
+    <div id="city"><b>{{ datas.name }}</b></div>
+    <div class="climate">
+        <div id="temp">
+            <span id="value" ng-click="changeTemp()">
+                <b>{{ temperature | number:0 }}</b>
+                <span ng-show="cToF === true">&deg;F</span>
+                <span ng-show="!cToF === true">&deg;C</span>
+            </span>
+        </div>
+        <div id="weather">{{ datas.weather[0].main }}</div>
+    </div>
+    <div class="other">
+        <div class="humidity">
+            <i class="icon ion-ios-cloudy"></i>
+            <p>Humidity</p>
+            <b>{{ datas.main.humidity }}</b>
+        </div>
+        <div class="min-max">
+            <i class="icon ion-md-thermometer"></i>
+            <p>Temperature</p>
+            <div class="temp-table row">
+                <div class="col"><b>{{ (datas.main.temp_min - 273.15) }}</b>&deg;</div>
+                <div class="col"><b>{{ (datas.main.temp_max - 273.15) }}</b>&deg;</div>
+            </div>
+        </div>
+        <div class="wind">
+            <i class="icon ion-ios-thunderstorm"></i>
+            <p>Wind</p>
+            <b>{{ datas.wind.speed }}m/sec</b>
+        </div>
+    </div>
+</ion-content>
+<div class="bar bar-footer double-arrow">
+    <i class="icon ion-chevron-up arrow"></i>
+</div>
