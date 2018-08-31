@@ -1,24 +1,39 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,regular,italic,600,600italic,700,700italic,800,800italic);
+
+ion-content{
+    font-family: 'Open Sans', sans-serif !important;
+}
+.bg-primary{
+    background: #ECEFF1;
+}
+.bg-secondary{
+    background: #CFD8DC;
+}
 #city{
     font-size: 25px;
-    padding-bottom: 30px;
+    padding-bottom: px;
     text-align: center;
     padding-top: 20px;
+}
+
+#cloud-icon{
+    text-align: center;
 }
 
 .climate{
     display: flex;
     flex-direction: column;
-    padding-top: 50%;
+    padding-bottom: 10%;
     align-items: center;
 
     #temp{
         padding: 30px;
-        font-size: 3rem;
+        font-size: 50px;
     }
 
-    #weather{
+    #weather-description{
         padding-top: 20px;
-        font-size: 2rem;
+        font-size: 20px;
     }
 }
 
@@ -26,6 +41,9 @@
     display: flex;
     flex-direction: row;
     text-align: center;
+    padding-top: 20px;
+    transition: all linear 0.3s;
+    padding-bottom: 35px;
 
     .humidity{
         display: flex;
@@ -36,16 +54,87 @@
         display: flex;
         flex-direction: column;
         margin: auto;
+        padding: 0px 20px 0px;
+        border-width: 0px 1px 0px;
+        border-style: dotted;
+        align-items: center;
     }
+
     .wind{
         display: flex;
         flex-direction: column;
         margin: auto;
     }
 
-    i.icon{
+    i{
         font-size: 40px;
     }
-
 }
 
+.info{
+    transition: all linear 0.3s;
+    .box-shadow{
+        box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16);
+    }
+}
+
+footer{
+    position: sticky;
+    bottom: 0;
+    margin-top: 20px; 
+}
+
+.ng-show{
+    opacity: 1;
+}
+
+.ng-hide{
+    opacity: 0;
+}
+
+.alert{
+    text-align: center;
+    margin: 5px;
+    padding: 5px;
+    font-family: 'Open Sans', sans-serif !important;
+    .popup{
+        border-radius: 25px;
+        width: 350px;
+        text-align: center;
+    }
+
+    .popup-head{
+        display: none;
+    }
+
+    .popup-body{
+        padding: 0px;
+        font-size: 20px;
+    }
+
+    .alert{
+        margin: 35px 35px;
+    }
+
+    .popup-buttons{
+        border-radius: 0px 0px 25px 25px;
+        background: red;
+
+        button{
+            background: transparent;
+        }
+    }
+}
+
+// .splash{
+//     background: skyblue;
+//     .title{
+//         text-align: center;
+//         padding-top: 50%;
+//         font-size: 20px;
+//         color: #ffffff;
+//         .logo{
+//             font-size: 200px !important;
+//         }
+//     }
+// }

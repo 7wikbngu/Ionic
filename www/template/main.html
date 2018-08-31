@@ -1,14 +1,21 @@
-<ion-header-bar class="item-input-inset">
+<ion-header-bar class="item-input-inset bg-secondary">
     <label class="item-input-wrapper">
         <i class="icon ion-ios-search placeholder-icon"></i>
         <input type="text" placeholder="Enter a city name" ng-model="cityName">
     </label>
-    <button class="button" ng-click="get()">
+    <button class="button" ng-click="get()"> 
         Search
     </button>
 </ion-header-bar>
-<ion-content on-swipe-up="changeInfo()">
-    <div id="city"><b>{{ datas.name }}</b></div>
+<ion-content ng-hide="content == false" on-swipe-up="showInfo()" on-swipe-down="showOther()" class="has-footer bg-primary">
+    <div id="city" ion-fixed>
+        <h2>{{ datas.name }}</h2>
+        <h4>{{ datas.sys.country }}</h4>
+        <p>{{ day }}  {{ time }}</p>
+    </div>
+    <div id="cloud-icon">
+        <img ng-src="{{ imgUrl }}" alt="Weather Img">
+    </div>
     <div class="climate">
         <div id="temp">
             <span id="value" ng-click="changeTemp()">
@@ -17,29 +24,59 @@
                 <span ng-show="!cToF === true">&deg;C</span>
             </span>
         </div>
-        <div id="weather">{{ datas.weather[0].main }}</div>
+        <div id="weather-description">
+            <p>{{ datas.weather[0].description | uppercase }}</p>
+        </div>
     </div>
-    <div class="other">
+    <div class="other" ng-hide="swipe == true">
         <div class="humidity">
             <i class="icon ion-ios-cloudy"></i>
             <p>Humidity</p>
-            <b>{{ datas.main.humidity }}</b>
+            <b>{{ datas.main.humidity }} %</b>
         </div>
         <div class="min-max">
-            <i class="icon ion-md-thermometer"></i>
-            <p>Temperature</p>
+            <i class="icon ion-thermometer"></i>
+            <div class="row">
+                <div class="col">Min.</div>
+                <div class="col">Max.</div>
+            </div>
             <div class="temp-table row">
-                <div class="col"><b>{{ (datas.main.temp_min - 273.15) }}</b>&deg;</div>
-                <div class="col"><b>{{ (datas.main.temp_max - 273.15) }}</b>&deg;</div>
+                <div class="col">
+                    <b>{{ (temperatureMin) | number:0 }}</b>&deg;
+                    <span ng-show="cToF === true">F</span>
+                    <span ng-show="!cToF === true">C</span>
+                </div>
+                <div class="col">
+                    <b>{{ (temperatureMax) | number:0 }}</b>&deg;
+                    <span ng-show="cToF === true">F</span>
+                    <span ng-show="!cToF === true">C</span>
+                </div>
             </div>
         </div>
         <div class="wind">
             <i class="icon ion-ios-thunderstorm"></i>
             <p>Wind</p>
-            <b>{{ datas.wind.speed }}m/sec</b>
+            <b>{{ datas.wind.speed }} m/sec</b>
+        </div>
+    </div>
+    <div class="info" ng-show="swipe == true">
+        <div class="card box-shadow">
+            <div class="item bg-secondary">
+                Sunrise : {{ sunrise }}
+            </div>
+            <div class="item bg-secondary">
+                Sunset : {{ sunset }}
+            </div>
+            <div class="item bg-secondary">
+                Pressure: {{ datas.main.pressure }} hPa
+            </div>
+            <div class="item bg-secondary">
+                Wind: {{ datas.wind.deg}} meter/sec 
+            </div>
         </div>
     </div>
 </ion-content>
-<div class="bar bar-footer double-arrow">
-    <i class="icon ion-chevron-up arrow"></i>
-</div>
+<footer class="bar bar-footer double-arrow bg-primary">
+    <i class="icon ion-chevron-up arrow" ng-show="swipe == true"></i>
+    <i class="icon ion-chevron-down arrow" ng-hide="swipe == true"></i>
+</footer>

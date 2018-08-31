@@ -10,6 +10,8 @@
     "gulp-sass": "^3.1.0"
   },
   "dependencies": {
+    "@ionic-native/splash-screen": "^4.12.0",
+    "cordova-android": "7.0.0",
     "cordova-ios": "4.5.5",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-ionic-keyboard": "^2.1.2",

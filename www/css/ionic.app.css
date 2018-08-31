@@ -26,6 +26,7 @@ $dark:                            #444 !default;
   used under CC BY http://creativecommons.org/licenses/by/4.0/
   Modified icons to fit ionicon’s grid from original.
 */
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,regular,italic,600,600italic,700,700italic,800,800italic);
 @font-face {
   font-family: "Ionicons";
   src: url("../lib/ionic/fonts/ionicons.eot?v=2.0.1");
@@ -9874,28 +9875,43 @@ a.button {
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
 
+ion-content {
+  font-family: 'Open Sans', sans-serif !important; }
+
+.bg-primary {
+  background: #ECEFF1; }
+
+.bg-secondary {
+  background: #CFD8DC; }
+
 #city {
   font-size: 25px;
-  padding-bottom: 30px;
+  padding-bottom: px;
   text-align: center;
   padding-top: 20px; }
+
+#cloud-icon {
+  text-align: center; }
 
 .climate {
   display: flex;
   flex-direction: column;
-  padding-top: 50%;
+  padding-bottom: 10%;
   align-items: center; }
   .climate #temp {
     padding: 30px;
-    font-size: 3rem; }
-  .climate #weather {
+    font-size: 50px; }
+  .climate #weather-description {
     padding-top: 20px;
-    font-size: 2rem; }
+    font-size: 20px; }
 
 .other {
   display: flex;
   flex-direction: row;
-  text-align: center; }
+  text-align: center;
+  padding-top: 20px;
+  transition: all linear 0.3s;
+  padding-bottom: 35px; }
   .other .humidity {
     display: flex;
     flex-direction: column;
@@ -9903,13 +9919,55 @@ a.button {
   .other .min-max {
     display: flex;
     flex-direction: column;
-    margin: auto; }
+    margin: auto;
+    padding: 0px 20px 0px;
+    border-width: 0px 1px 0px;
+    border-style: dotted;
+    align-items: center; }
   .other .wind {
     display: flex;
     flex-direction: column;
     margin: auto; }
-  .other i.icon {
+  .other i {
     font-size: 40px; }
+
+.info {
+  transition: all linear 0.3s; }
+  .info .box-shadow {
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16); }
+
+footer {
+  position: sticky;
+  bottom: 0;
+  margin-top: 20px; }
+
+.ng-show {
+  opacity: 1; }
+
+.ng-hide {
+  opacity: 0; }
+
+.alert {
+  text-align: center;
+  margin: 5px;
+  padding: 5px;
+  font-family: 'Open Sans', sans-serif !important; }
+  .alert .popup {
+    border-radius: 25px;
+    width: 350px;
+    text-align: center; }
+  .alert .popup-head {
+    display: none; }
+  .alert .popup-body {
+    padding: 0px;
+    font-size: 20px; }
+  .alert .alert {
+    margin: 35px 35px; }
+  .alert .popup-buttons {
+    border-radius: 0px 0px 25px 25px;
+    background: red; }
+    .alert .popup-buttons button {
+      background: transparent; }
 
 .middle {
   justify-content: center; }
