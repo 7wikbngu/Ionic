@@ -9879,19 +9879,52 @@ ion-content {
   font-family: 'Open Sans', sans-serif !important; }
 
 .bg-primary {
-  background: #ECEFF1; }
+  background: #14435b; }
 
 .bg-secondary {
-  background: #CFD8DC; }
+  background: #ffffff; }
+
+.font-weight-bold {
+  font-weight: bold; }
+
+.text-light {
+  color: #fafafa; }
+
+.text-white {
+  color: #fff; }
+
+.text-blue {
+  color: #4285f4; }
+
+.bar.bar-header {
+  height: 55px;
+  background: #14435b; }
+  .bar.bar-header label {
+    height: 40px;
+    border-radius: 5px;
+    background: #ffffff;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08); }
+    .bar.bar-header label i {
+      color: #4285f4;
+      font-size: 20px; }
+      .bar.bar-header label i:before {
+        font-weight: bold; }
+  .bar.bar-header button {
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+    color: #ffffff;
+    background: #4285f4;
+    font-weight: bold;
+    height: 40px;
+    width: 20%; }
 
 #city {
   font-size: 25px;
-  padding-bottom: px;
   text-align: center;
   padding-top: 20px; }
 
 #cloud-icon {
-  text-align: center; }
+  text-align: center;
+  margin-right: 25px; }
 
 .climate {
   display: flex;
@@ -9929,17 +9962,25 @@ ion-content {
     flex-direction: column;
     margin: auto; }
   .other i {
-    font-size: 40px; }
+    font-size: 40px;
+    color: #D1D1D1; }
 
 .info {
   transition: all linear 0.3s; }
   .info .box-shadow {
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16); }
+    .info .box-shadow .right-text {
+      float: right; }
 
 footer {
-  position: sticky;
-  bottom: 0;
   margin-top: 20px; }
+  footer i {
+    font-size: 25px;
+    color: #ffffff;
+    margin-left: auto; }
+
+.location:hover {
+  color: black; }
 
 .ng-show {
   opacity: 1; }

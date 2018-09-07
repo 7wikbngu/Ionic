@@ -46,11 +46,61 @@ angular.module('starter', ['ionic'])
 }])
 
 .controller('mainCtrl',['$scope', '$http', '$state', '$ionicPopup', function($scope, $http, $state, $ionicPopup){
+  // 'content' will show if true
   $scope.content = false;
-  $scope.get = function () {
+  // Geolocation function will be called on "loaded" event of lifecycle
+  $scope.lat = "";
+  $scope.long = "";
+  $scope.getDataByCoords = getDataByCoords;
+  $scope.cityName = " ";
+  $scope.$on('$ionicView.loaded', function(){
+    console.log("Loaded.");
+    navigator.geolocation.getCurrentPosition( (pos) => {
+      console.log(pos);
+      $scope.lat = pos.coords.latitude;
+      $scope.long = pos.coords.longitude;
+      getDataByCoords($scope.lat, $scope.long);
+    }, (err) => {
+      console.log("ERROR: ", err);
+    }, { enableHighAccuracy: false });
+  })
+  // Lat and long API call
+  function getDataByCoords(lat, long) {
+    console.log(lat, long);
+    $http.get('http://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+long+'&appid=279b9caa6884de71bd56f55d055cc2b4').then( function (resp) {
+        console.log(resp);
+        $scope.datas = resp.data;
+        temp = $scope.datas.main.temp;
+        temp_min = $scope.datas.main.temp_min;
+        temp_max = $scope.datas.main.temp_max;
+        weather = $scope.datas.weather[0].main;
+        changeImage(weather);
+        $scope.temperature = temp - 273.15;
+        $scope.temperatureMin = temp_min - 273.15;
+        $scope.temperatureMax = temp_max - 273.15;
+        sunriseUnix = $scope.datas.sys.sunrise;
+        sunsetUnix = $scope.datas.sys.sunset;
+        convertTime(sunriseUnix, sunsetUnix);
+        console.log("Data reveived in 'resp'");
+        $scope.content = true;
+        $scope.swipe = false;
+        $scope.cityName = $scope.datas.name;
+        window.localStorage.setItem('Coords', JSON.stringify(resp));
+      }, function (err) {
+        console.log("ERROR: ", err);
+        $ionicPopup.alert({
+          cssClass: "alert",
+          templateUrl: '../template/alert.html',
+          okType: 'button-assertive'
+        });
+        $scope.content = false;
+      });
+  }
+
+  // Openweather API call with cityName
+  $scope.getData = function () {
     city = $scope.cityName;
-    $http.get('http://api.openweathermap.org/data/2.5/weather?q='+city+'&appid=279b9caa6884de71bd56f55d055cc2b4')
-      .then(function (res) {
+    $http.get('http://api.openweathermap.org/data/2.5/weather?q='+city+'&appid=279b9caa6884de71bd56f55d055cc2b4').then( function (res) {
         $scope.datas = res.data;
         temp = $scope.datas.main.temp;
         temp_min = $scope.datas.main.temp_min;
@@ -65,9 +115,10 @@ angular.module('starter', ['ionic'])
         convertTime(sunriseUnix,sunsetUnix);
         console.log("Data reveived in 'res'");
         $scope.content = true;
+        $scope.swipe = false;
+        $scope.cityName = "";
         window.localStorage.setItem('res', JSON.stringify(res));
-      },
-        function (err) {
+      }, function (err) {
           console.log("ERROR: ", err);
           $ionicPopup.alert({
             cssClass: "alert",
@@ -75,7 +126,7 @@ angular.module('starter', ['ionic'])
             okType: 'button-assertive'
           });
           $scope.content = false;
-        });
+      });
   }
   
   // Display Weather Icon according to climate

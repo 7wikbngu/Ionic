@@ -1,22 +1,23 @@
-<ion-header-bar class="item-input-inset bg-secondary">
+<ion-header-bar class="item-input-inset header bg-secondary">
     <label class="item-input-wrapper">
         <i class="icon ion-ios-search placeholder-icon"></i>
-        <input type="text" placeholder="Enter a city name" ng-model="cityName">
+        <input type="text" id="searchCity" placeholder="Enter a city name" ng-model="cityName">
     </label>
-    <button class="button" ng-click="get()"> 
+    <button class="button" ng-click="getData()"> 
         Search
     </button>
 </ion-header-bar>
 <ion-content ng-hide="content == false" on-swipe-up="showInfo()" on-swipe-down="showOther()" class="has-footer bg-primary">
-    <div id="city" ion-fixed>
-        <h2>{{ datas.name }}</h2>
-        <h4>{{ datas.sys.country }}</h4>
+    <div id="city">
+        <h2 class="font-weight-bold text-light">{{ datas.name }}</h2>
+        <h4 class="font-weight-bold text-white">{{ datas.sys.country }}</h4>
         <p>{{ day }}  {{ time }}</p>
     </div>
     <div id="cloud-icon">
         <img ng-src="{{ imgUrl }}" alt="Weather Img">
+        <!-- <img class="back-image" src="../img/cloudy.png"> -->
     </div>
-    <div class="climate">
+    <div class="climate text-white">
         <div id="temp">
             <span id="value" ng-click="changeTemp()">
                 <b>{{ temperature | number:0 }}</b>
@@ -28,14 +29,15 @@
             <p>{{ datas.weather[0].description | uppercase }}</p>
         </div>
     </div>
-    <div class="other" ng-hide="swipe == true">
+    <!-- OTHER BLOCK -->
+    <div class="other text-white" ng-hide="swipe == true">
         <div class="humidity">
-            <i class="icon ion-ios-cloudy"></i>
+            <i class="icon text-blue ion-ios-cloudy"></i>
             <p>Humidity</p>
             <b>{{ datas.main.humidity }} %</b>
         </div>
         <div class="min-max">
-            <i class="icon ion-thermometer"></i>
+            <i class="icon text-blue ion-thermometer"></i>
             <div class="row">
                 <div class="col">Min.</div>
                 <div class="col">Max.</div>
@@ -54,29 +56,31 @@
             </div>
         </div>
         <div class="wind">
-            <i class="icon ion-ios-thunderstorm"></i>
+            <i class="icon text-blue ion-ios-thunderstorm"></i>
             <p>Wind</p>
             <b>{{ datas.wind.speed }} m/sec</b>
         </div>
     </div>
+    <!-- INFO BLOCK -->
     <div class="info" ng-show="swipe == true">
         <div class="card box-shadow">
             <div class="item bg-secondary">
-                Sunrise : {{ sunrise }}
+                Sunrise : <span class="right-text">{{ sunrise }}</span>
             </div>
             <div class="item bg-secondary">
-                Sunset : {{ sunset }}
+                Sunset : <span class="right-text">{{ sunset }}</span>
             </div>
             <div class="item bg-secondary">
-                Pressure: {{ datas.main.pressure }} hPa
+                Pressure: <span class="right-text">{{ datas.main.pressure }} hPa</span>
             </div>
             <div class="item bg-secondary">
-                Wind: {{ datas.wind.deg}} meter/sec 
+                Wind: <span class="right-text">{{ datas.wind.deg }} meter/sec</span> 
             </div>
         </div>
     </div>
 </ion-content>
-<footer class="bar bar-footer double-arrow bg-primary">
+<footer class="bar bar-footer bg-primary">
     <i class="icon ion-chevron-up arrow" ng-show="swipe == true"></i>
     <i class="icon ion-chevron-down arrow" ng-hide="swipe == true"></i>
+    <i class="icon ion-ios-navigate location" ng-click="getDataByCoords(lat, long)"></i>
 </footer>
