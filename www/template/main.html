@@ -3,7 +3,7 @@
         <i class="icon ion-ios-search placeholder-icon"></i>
         <input type="text" id="searchCity" placeholder="Enter a city name" ng-model="cityName">
     </label>
-    <button class="button" ng-click="getData()"> 
+    <button class="button" ng-click="getData()" ng-keypress="getData()"> 
         Search
     </button>
 </ion-header-bar>
@@ -80,6 +80,7 @@
     </div>
 </ion-content>
 <footer class="bar bar-footer bg-primary">
+    <i class="icon ion-ios-information"></i>
     <i class="icon ion-chevron-up arrow" ng-show="swipe == true"></i>
     <i class="icon ion-chevron-down arrow" ng-hide="swipe == true"></i>
     <i class="icon ion-ios-navigate location" ng-click="getDataByCoords(lat, long)"></i>

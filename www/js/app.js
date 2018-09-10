@@ -45,7 +45,7 @@ angular.module('starter', ['ionic'])
   $urlRouterProvider.otherwise('/main');
 }])
 
-.controller('mainCtrl',['$scope', '$http', '$state', '$ionicPopup', function($scope, $http, $state, $ionicPopup){
+.controller('mainCtrl',['$scope', '$http', '$state', '$ionicPopup', '$ionicLoading', function($scope, $http, $state, $ionicPopup, $ionicLoading){
   // 'content' will show if true
   $scope.content = false;
   // Geolocation function will be called on "loaded" event of lifecycle
@@ -67,8 +67,19 @@ angular.module('starter', ['ionic'])
   // Lat and long API call
   function getDataByCoords(lat, long) {
     console.log(lat, long);
+    var showLoading = function() {
+      $ionicLoading.show({
+        template: '<i class="ion-loading-c"></i>',
+        noBackdrop: true
+      });
+    }
+    var hideLoading = function() {
+      $ionicLoading.hide();
+    }
+    showLoading();
     $http.get('http://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+long+'&appid=279b9caa6884de71bd56f55d055cc2b4').then( function (resp) {
         console.log(resp);
+        hideLoading();
         $scope.datas = resp.data;
         temp = $scope.datas.main.temp;
         temp_min = $scope.datas.main.temp_min;
