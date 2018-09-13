@@ -9966,6 +9966,8 @@ ion-content {
     display: flex;
     flex-direction: column;
     margin: auto; }
+    .other .wind i {
+      vertical-align: top; }
   .other i {
     font-size: 40px;
     color: #D1D1D1; }
